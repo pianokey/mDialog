@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>mDialog - Demo - www.ifrans.cn</title>
+    <link rel="stylesheet" href="../css/mdialog.css">
+    <!--引入fastclick,非必须-->
+    <script src="../lib/fastclick.min.js"></script>
+
+    <script src="../src/mdialog.js"></script>
+    <style>
+        p{ margin-bottom:40px;}
+    </style>
+</head>
+<body>
+<p>示例1<input type="button" id="demo1" value="弹窗1"></p>
+
+<p>示例2:更改弹窗标题<input type="button" id="demo2" value="弹窗2"></p>
+
+<p>示例3:自定义“确定”按钮文字及回调<input type="button" id="demo3" value="弹窗3"></p>
+
+<p>示例4:显示两个按钮，且点“确定”按钮不关闭弹窗<input type="button" id="demo4" value="弹窗4"></p>
+
+<p>
+    示例5:不带按钮，不带遮罩层，可在外部关闭<input type="button" id="demo5" value="弹窗5"><input type="button" id="closeMyDialogBtn" value="关闭左侧按钮打开的弹窗">
+</p>
+
+<p>示例6:定时关闭<input type="button" id="demo6" value="弹窗6"></p>
+
+<script>
+    //fastclick初始化
+    window.addEventListener('load', function () {
+        FastClick.attach(document.body);
+    }, false);
+
+    document.getElementById('demo1').addEventListener('click', function () {
+        mDialog('我是弹窗内容');
+    }, false);
+
+    document.getElementById('demo2').addEventListener('click', function () {
+        mDialog('我是弹窗内容', {title: '我是自定义标题'});
+    }, false);
+
+    document.getElementById('demo3').addEventListener('click', function () {
+        mDialog('我是弹窗内容', {okBtn: {text: '点我点我', callback: function () {
+            alert('hoho~');
+        }}});
+    }, false);
+
+    document.getElementById('demo4').addEventListener('click', function () {
+        mDialog('点确定按钮不会关闭弹窗鸟~', {okBtn: {callback: function () {
+            alert('我是确定按钮的回调');
+            return false;
+        }}, cancelBtn: {callback: function () {
+            alert('我是取消按钮的回调');
+        }}});
+    }, false);
+
+    document.getElementById('demo5').addEventListener('click', function () {
+        mDialog('点“弹窗5”按钮旁边的按钮可关闭本弹窗', {id: 'myDialog', mask: false, okBtn: {hide: true}});
+    }, false);
+
+    document.getElementById('closeMyDialogBtn').addEventListener('click', function () {
+        mDialog.close(document.getElementById('myDialog'));
+    }, false);
+
+    var oTimer = null;
+    document.getElementById('demo6').addEventListener('click', function () {
+        var oDialog = mDialog('本弹窗将在打开3秒后自动关闭', {okBtn: {hide: true},closeBtn:{hide:true}});
+        oTimer = setTimeout(function () {
+            oDialog.close();
+        }, 3000);
+    }, false);
+</script>
+</body>
+</html>
