@@ -8,7 +8,7 @@
 
 可以通过扫描一下二维码来访问：
 
-![扫描二维码访问DEMO](https://github.com/Franslee/mDialog/blob/master/demo/_qrcode/demo_qrcode.png)
+![扫描二维码访问DEMO](https://raw.github.com/Franslee/mDialog/master/demo/_qrcode/demo_qrcode.png)
 
 
 ##文档
