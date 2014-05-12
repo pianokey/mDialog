@@ -1,9 +1,12 @@
 /*!
- * mDialog 1.0 beta
- * Date: 2013-12-20
+ * mDialog v1.3.1
  * Copyright 2013-2014 Frans.Lee, http://www.ifrans.cn
+ * v1.3.1 2014-04-23 #修复一处自定义class相关的问题
+ * v1.3 2014-04-01 #优化弹窗内容过多时的上下滑动体验
+ * v1.2 2014-03-18 #修复一处问题，兼容android 2.3.x
+ * v1.1 2014-02-19 #阻止touchmove事件
  */
-(function () {
+;(function () {
     var mDialogTpl = '<div class="ui-dialog-inner">' +
         '<div class="ui-dialog-header">' +
         '<h2 class="ui-dialog-title"></h2>' +
@@ -55,7 +58,7 @@
             this.DOM = DOM = DOM || document.createElement('div');
 
             DOM.innerHTML = mDialogTpl;
-            DOM.className = 'ui-dialog ' + (option.mask ? 'ui-dialog-mask' : '') + option.class;
+            DOM.className = 'ui-dialog ' + (option.mask ? 'ui-dialog-mask ' : '') + option.addClass;
             that.domElem('.ui-dialog-title').innerText = option.title;
             that.domElem('.ui-dialog-content').innerHTML = content;
             DOM.style.zIndex = mDialog.config.zIndex++;
@@ -64,6 +67,9 @@
             that.createBtn(option);
 
             if (newDom) {
+                DOM.addEventListener('touchmove', function (e) {
+                    e.target.className!='ui-dialog-content' && e.preventDefault();
+                });
                 document.body.appendChild(DOM);
             } else {
                 DOM.style.display = '';
@@ -129,7 +135,7 @@
         title: '提示信息',
         mask: true,
         id: '',
-        class: '',
+        addClass: '',
         zIndex: 9900,
         okBtn: {
             hide: false,
