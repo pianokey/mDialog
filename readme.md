@@ -1,4 +1,4 @@
-#mDialog v1.0 beta
+#mDialog
 一个针对移动web的轻量级对话框组件。
 
 ##Demo
