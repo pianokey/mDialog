@@ -4,7 +4,7 @@
 ##Demo
 建议使用ios/android设备浏览器访问
 
-<http://www.ifrans.cn/demo/mDialog/1.0beta/demo.html>
+<http://www.ifrans.cn/demo/mDialog/demo.html>
 
 可以通过扫描一下二维码来访问：
 
